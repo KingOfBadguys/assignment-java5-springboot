@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Salon list</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/css/member/salonList.css}">
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Nav -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" th:href="@{/}">Bad but best ♥</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li class="active"><a th:href="@{/member/salon/list}">Salon's name</a></li>
+                    <li><a th:href="@{/}">Artist</a></li>
+                    <li><a th:href="@{/}">About us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark"
+         style="height:auto; background-size: cover; background-image:
+    url(data:image/jpeg;base64,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);">
+    <br>
+    <br>
+    <h2>List of the best salon</h2>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Carousel indicators -->
+        <!--        <th:block th:each="i: ${#numbers.sequence(1, 5)}"></th:block>-->
+        <ol class="carousel-indicators">
+            <th:block th:each="i:${#numbers.sequence(1,index)}">
+                <li data-target="#myCarousel" data-slide-to="i" class="active"></li>
+            </th:block>
+
+        </ol>
+        <!-- Wrapper for carousel items -->
+        <div class="carousel-inner">
+            <div class="item carousel-item">
+                <div class="img-box"><img th:src="${'/styles/img/3.jpg'}" alt=""></div>
+                <p class="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi
+                    suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis.
+                    Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor
+                    velit.
+                </p>
+                <p class="overview"><b>Antonio Moreno</b>Web Developer at <a href="#">Circle Ltd.</a></p>
+                <div class="star-rating">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item carousel-item active" th:each="salon : ${salon}">
+                <div class="img-box"><img th:src="${'/styles/img/'+salon.getImg()}" alt=""></div>
+                <p class="testimonial" th:text="${salon.getDescription()}"></p>
+                <p class="overview" style="color: black">
+                    Salon:
+                    <b th:text="${salon.getSalonName()}"></b>
+                    <a style="color: white" th:href="@{/salon/{id}/like(id=${salon.getSalonId()})}"> Favorite</a>
+                <p th:text="${salon.getPhone()}"></p>
+                <p th:text="${salon.getEmail()}"></p>
+                <p th:text="${salon.getSalonAddress()}"></p>
+                </p>
+                <!-- <div class="star-rating">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                </div> -->
+                <hr>
+            </div>
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorite page</title>
+    <link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="container justify-content-center">
+    <div class="row">
+        <div class="col-sm-8 align-content-center">
+            <div class="alert alert-primary">Favorite</div>
+            <table class="table stable-striped" border="1px">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Salon name</th>
+                    <th>Salon address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${session.favorite}">
+                    <td th:text="${item.salon.salonId}"></td>
+                    <td th:text="${item.salon.salonName}"></td>
+                    <td th:text="${item.salon.salonAddress}"></td>
+                    <td th:text="${item.salon.phone}"></td>
+                    <td th:text="${item.salon.email}"></td>
+                    <td th:text="${item.salon.description}"></td>
+                    <td><img th:src="${'/styles/img/'+item.salon.img}" width="200px"/></td>
+                </tr>
+                </tbody>
+            </table>
+            <a th:href="${'/member/salon/list'}">Continue view</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
