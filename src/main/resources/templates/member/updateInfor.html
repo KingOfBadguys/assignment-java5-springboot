@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <!-- Register link-->
+    <link href="login/register.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>Create member</title>
+</head>
+<body>
+<div class="container-fluid">
+    <form class="well form-horizontal" th:action="@{/update}" th:object="${member}" method="post" id="contact_form">
+        <!-- Nav -->
+        <nav class="navbar navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="navbar-header" >
+                            <a class="navbar-brand" th:href="@{/}">WebSiteName</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a th:href="@{/}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a th:href="@{/member/logout}"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend style="text-align: center">
+                <h2><b>Update your information</b></h2>
+            </legend>
+            <br>
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Full name</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="fullName" placeholder="Full name" class="form-control" type="text"
+                               th:field="*{fullName}" required="required">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="E-Mail Address" class="form-control" type="text"
+                               th:field="*{email}" required>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Contact No.</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="phone" placeholder="(084)" class="form-control" type="text" maxlength="10"
+                               th:field="*{phone}" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Address</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="address" placeholder="Address" class="form-control" type="text"
+                               th:field="*{address}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Gender</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="gender" th:field="*{gender}" class="form-control selectpicker" required>
+                            <option th:value="''" th:text="'Select your gender'"></option>
+                            <option th:value="'male'" th:text="Male"></option>
+                            <option th:value="'female'" th:text="Female"></option>
+                            <option th:value="'other'" th:text="Other"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Date of birth</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="date" placeholder="date" class="form-control" type="date"
+                               th:field="*{birthDate}" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+
+            <!-- Message -->
+            <th:block th:if="${uSuccess}">
+                <div class="alert alert-success" role="alert" id="success_message"><i
+                        class="glyphicon glyphicon-thumbs-up"></i> <p th:text="${uSuccess}"></p>
+                </div>
+            </th:block>
+
+            <th:block th:if="${uError}">
+                <div class="alert alert-danger" role="alert" id="error-panel"><i
+                        class="glyphicon glyphicon-ban-circle"></i> <p th:text="${uError}"></p>
+                </div>
+            </th:block>
+
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <button type="submit"
+                            class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT
+                        <span
+                                class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div><!-- /.container -->
+</body>
+</html>
