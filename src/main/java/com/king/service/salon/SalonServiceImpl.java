@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
 public class SalonServiceImpl implements ISalonService {
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -34,7 +36,10 @@ public class SalonServiceImpl implements ISalonService {
 
     @Override
     public Salon findByName(String name) {
-        return null;
+        String query = "select s from Salon s where s.salonName= :salonName";
+        TypedQuery<Salon> accountTypedQuery = entityManager.createQuery(query, Salon.class);
+        accountTypedQuery.setParameter("salonName",name);
+        return accountTypedQuery.getResultList().get(0);
     }
 
     @Override
@@ -45,5 +50,10 @@ public class SalonServiceImpl implements ISalonService {
     @Override
     public boolean existsById(int id) {
         return true; //true if id exists
+    }
+
+    @Override
+    public Long countByID(int id) {
+        return iSalonRepository.countBySalonId(id);
     }
 }

@@ -64,6 +64,10 @@ public class Login {
 
                 //save login's information
                 SaveLogged.MEM = member;
+                int role = member.getRole();
+
+                model.addAttribute("login",SaveLogged.MEM);
+                model.addAttribute("role",role);
 
                 return "home";
             } else {

@@ -16,4 +16,6 @@ public interface ISalonService {
     void remove(int id);
 
     boolean existsById(int id);
+
+    Long countByID(int id);
 }

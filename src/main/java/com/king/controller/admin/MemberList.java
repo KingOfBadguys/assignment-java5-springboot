@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("member/")
-public class List {
+public class MemberList {
     @Autowired
     private IMemberService iMemberService;
 
