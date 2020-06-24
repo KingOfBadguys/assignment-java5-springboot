@@ -70,11 +70,12 @@
                     <p style="color: white" th:text="${username}"></p>
                 </div>
                 <p class="lead  text-light mb-5">Share and find your favorite best HairSalon here</p>
-                <p><a href="member/login"
-                      class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised">Sign in or login to try your
-                    best!!></a>
-                </p>
-
+                <th:block th:if="${login}==null">
+                    <p><a href="member/login"
+                          class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised">Sign in or login to try your
+                        best!!></a>
+                    </p>
+                </th:block>
                 <div class="btn-container-wrapper p-relative d-block  zindex-1">
                     <a class="btn btn-link btn-lg   mt-md-3 mb-4 scroll align-self-center text-light"
                        href="http://bootstraptor.com">

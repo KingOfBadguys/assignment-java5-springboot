@@ -23,25 +23,37 @@ public class FavoriteController {
     }
 
     @RequestMapping("/salon/{id}/like")
-    public String addToCart(@PathVariable("id") int id, Model model, HttpSession session) {
+    public String like(@PathVariable("id") int id, Model model, HttpSession session) {
         if (session.getAttribute("favorite") == null) {
             List<Favorite> favorite = new ArrayList<Favorite>();
             favorite.add(new Favorite(iSalonService.findById(id)));
             session.setAttribute("favorite", favorite);
-        }else{
+        } else {
             List<Favorite> favorite = (List<Favorite>) session.getAttribute("favorite");
-            int index = isExists(id,favorite);
-            if(index==-1){
+            int index = isExists(id, favorite);
+            if (index == -1) {
                 favorite.add(new Favorite(iSalonService.findById(id)));
-            }session.setAttribute("cart",favorite);
+            }
+            session.setAttribute("cart", favorite);
         }
         return "member/salon/favorite2";
     }
-    private int isExists(int id,List<Favorite> favorite){
-        for(int i=0;i<favorite.size();i++){
-            if(favorite.get(i).getSalon().getSalonId()==id){
+
+    @RequestMapping("/salon/dislike/{id}")
+    public String dislike(@PathVariable("id") int id, HttpSession session) {
+        List<Favorite> favorite = (List<Favorite>) session.getAttribute("favorite");
+        int index = isExists(id, favorite);
+        favorite.remove(index);
+        session.setAttribute("favorite", favorite);
+        return "redirect:/member/salon/favorite2";
+    }
+
+    private int isExists(int id, List<Favorite> favorite) {
+        for (int i = 0; i < favorite.size(); i++) {
+            if (favorite.get(i).getSalon().getSalonId() == id) {
                 return i;
             }
-        }return -1;
+        }
+        return -1;
     }
 }

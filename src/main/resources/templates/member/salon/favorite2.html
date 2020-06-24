@@ -37,7 +37,7 @@
 <div class="container-xl">
     <hr>
     <div class="row">
-        <div class="col-md-10 mx-auto">
+        <div class="col-md-12 mx-auto">
             <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
                 <!-- Wrapper for carousel items -->
                 <div class="carousel-inner">
@@ -46,21 +46,24 @@
                             <div class="col-sm-3" th:each="item : ${session.favorite}">
                                 <div class="thumb-wrapper">
                                     <div class="img-box">
-                                        <img th:src="${'/styles/img/'+item.salon.img}" width="auto" height="320px"  alt="">
+                                        <img th:src="${'/styles/img/'+item.salon.img}" width="auto" height="320px"
+                                             alt="">
                                     </div>
                                     <div class="thumb-content">
                                         <h4 th:text="${item.salon.salonName}"></h4>
-                                        <p th:text="${item.salon.description}"></p>
+                                        <p th:text="${item.salon.getSalonAddress()}"></p>
                                         <p th:text="${item.salon.phone}"></p>
                                         <a th:href="${'/member/salon/list'}" class="btn btn-primary">Continue view <i
                                                 class="fa fa-angle-right"></i></a>
+                                        <a th:href="@{/salon/dislike/{id}(id=${item.salon.salonId})}"
+                                           class="btn btn-warning">Dislike
+                                            <i class="far fa-thumbs-down"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
