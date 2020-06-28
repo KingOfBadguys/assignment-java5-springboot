@@ -23,7 +23,7 @@ public class MemberEdit {
     @GetMapping("admin/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("member", iMemberService.findById(id));
-        return "admin/edit";
+        return "admin/member-edit";
     }
 
     @PostMapping("admin/edit")
@@ -31,7 +31,7 @@ public class MemberEdit {
         try {
             if (gender.equalsIgnoreCase("♥")) {
                 model.addAttribute("eError", "Please select your gender");
-                return "admin/edit";
+                return "admin/member-edit";
             } else {
                 iMemberService.save(member);
                 model.addAttribute("eSuccess", "Update successful!!!");
@@ -39,14 +39,14 @@ public class MemberEdit {
         } catch (Exception e) {
             model.addAttribute("eError", "Update failed!!!");
         }
-        return "admin/edit";
+        return "admin/member-edit";
     }
 
     /*Delete*/
     @GetMapping("admin/{id}/delete")
     public String delete(@PathVariable("id") int id, Model model) {
         model.addAttribute("member", iMemberService.findById(id));
-        return "admin/delete";
+        return "admin/member-delete";
     }
 
     @PostMapping("admin/delete")
@@ -61,14 +61,14 @@ public class MemberEdit {
         } catch (Exception e) {
             model.addAttribute("dError", "There is nothing to delete, deleted fail!!!");
         }
-        return "admin/delete";
+        return "admin/member-delete";
     }
 
     /*Craete*/
     @GetMapping("admin/create")
     public String create(Model model) {
         model.addAttribute("member", new Member());
-        return "admin/create";
+        return "admin/member-create";
     }
 
     @PostMapping("admin/create")
@@ -77,7 +77,7 @@ public class MemberEdit {
         try {
             if (iMemberService.findByName(username)!=null)
                 model.addAttribute("cError", "Username have already taken!!!");
-                return "admin/create";
+                return "admin/member-create";
 
         } catch (Exception e) {
             if(e!=null){
@@ -86,7 +86,7 @@ public class MemberEdit {
             }else{
                 model.addAttribute("cError", "Create failed!!!");
             }
-            return "admin/create";
+            return "admin/member-create";
         }
     }
 
@@ -94,6 +94,6 @@ public class MemberEdit {
     @PostMapping("admin/reset")
     public String doReset(Model model) {
         model.addAttribute("member", new Member());
-        return "admin/create";
+        return "admin/member-create";
     }
 }

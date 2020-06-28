@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("member/")
+@RequestMapping("admin/")
 public class MemberList {
     @Autowired
     private IMemberService iMemberService;
@@ -18,7 +18,7 @@ public class MemberList {
     public ModelAndView list(ModelAndView modelAndView) {
         if (SaveLogged.authenticated()) {
             if (SaveLogged.MEM.getRole() == 1) {
-                modelAndView = new ModelAndView("/member/list", "member", iMemberService.findAll());
+                modelAndView = new ModelAndView("/admin/member-list", "member", iMemberService.findAll());
                 return modelAndView;
             } else {
                 modelAndView = new ModelAndView("error", "message", "You have no permit to reach this page" +

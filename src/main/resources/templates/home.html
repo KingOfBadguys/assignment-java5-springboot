@@ -38,10 +38,10 @@
                         <a class="nav-link" th:href="@{/member/salon/list}">Salon's name</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Artist</a>
+                        <a class="nav-link" th:href="@{/}">Artist</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About us</a>
+                        <a class="nav-link" th:href="@{/aboutUs}">About us</a>
                     </li>
                     <div class="dropdown" th:if="${login}!=null">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -49,12 +49,12 @@
                         </button>
                         <div class="dropdown-menu">
                             <th:block th:if="${role}==1">
-                                <a class="dropdown-item" th:href="@{/member/list}">Member manager</a>
-                                <a class="dropdown-item" th:href="@{/salon/list}">Salon manager</a>
+                                <a class="dropdown-item" th:href="@{/admin/list}">Member manager</a>
+                                <a class="dropdown-item" th:href="@{/salon-mgn}">Salon manager</a>
                             </th:block>
-
                             <a class="dropdown-item" th:href="@{/member/update}">Update your information</a>
                             <a class="dropdown-item" th:href="@{/member/login}">logout</a>
+                            <a class="dropdown-item" th:href="@{/member/login}">Login</a>
                         </div>
                     </div>
                 </ul>
@@ -72,7 +72,8 @@
                 <p class="lead  text-light mb-5">Share and find your favorite best HairSalon here</p>
                 <th:block th:if="${login}==null">
                     <p><a href="member/login"
-                          class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised">Sign in or login to try your
+                          class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised">Sign in or login to try
+                        your
                         best!!></a>
                     </p>
                 </th:block>

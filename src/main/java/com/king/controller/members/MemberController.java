@@ -19,18 +19,6 @@ public class MemberController {
         return new Member();
     }
 
-    /*Edit member*/
-    @GetMapping("/member/edit")
-    public String edit(Model model) {
-        return "member/updateInfor";
-    }
-
-    @PostMapping("/member/edit")
-    public String doEdit(Model model, Member member) {
-        return "";
-    }
-    /*-------End edit*/
-
     /*Update Member*/
     @GetMapping("/member/update")
     public String update(Model model, Member member) {

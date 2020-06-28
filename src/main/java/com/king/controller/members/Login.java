@@ -28,7 +28,9 @@ public class Login {
             SaveLogged.MEM = new Member();
             Cookie cookie = new Cookie("setUser", setUser);
             model.addAttribute("cookieValue", cookie);
+            model.addAttribute("login",null);
             model.addAttribute("member",SaveLogged.MEM);
+            model.addAttribute("role",null);
             return "member/login";
     }
 
